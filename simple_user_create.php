@@ -33,13 +33,7 @@ function qcu_form(){
         <input type="hidden" name="action" value="qcu_handle">
 
         <label for="qcu-email">Email</label><br>
-        <input type="text" name="qcu-email" value=""><br>
-
-        <label for="qcu-first-name">First Name</label><br>
-        <input type="text" name="qcu-first-name" value=""><br>
-
-        <label for="qcu-last-name">Last Name</label><br>
-        <input type="text" name="qcu-last-name" value=""><br>
+        <input type="text" name="qcu-email" value=""><br><br><br>
 
         <input type="submit" name="submit" class="button button-primary" value="Create Shibboleth compatible user">
       </form>
@@ -55,10 +49,8 @@ function qcu_create_user() {
 
     //set up the new users stuff
     $userdata = array(
- 			'user_login' => $_POST['qcu-email'],
- 			'user_email' => $_POST['qcu-email'],
- 			'first_name' => $_POST['qcu-first-name'],
- 			'last_name' => $_POST['qcu-last-name']
+ 			'user_login' => $_POST['qcu-email']
+ 			//'user_email' => $_POST['qcu-email'] because it gets overwritten anyway
  		);
 
  		//create the new user
@@ -68,7 +60,7 @@ function qcu_create_user() {
     $user = new WP_User($user_id);
     update_usermeta($user->ID, 'shibboleth_account', true);
   }
-  
+
   //do it again if you like
   wp_redirect( admin_url() . 'admin.php?page=quick-create-user' );
   exit;
