@@ -33,7 +33,13 @@ function qcu_form(){
         <input type="hidden" name="action" value="qcu_handle">
 
         <label for="qcu-email">Email</label><br>
-        <input type="text" name="qcu-email" value=""><br><br><br>
+        <input type="text" name="qcu-email" value=""><br>
+
+        <label for="qcu-first-name">First Name</label><br>
+        <input type="text" name="qcu-first-name" value=""><br>
+
+        <label for="qcu-last-name">Last Name</label><br>
+        <input type="text" name="qcu-last-name" value=""><br>
 
         <input type="submit" name="submit" class="button button-primary" value="Create Shibboleth compatible user">
       </form>
@@ -43,16 +49,20 @@ function qcu_form(){
 
 
 function qcu_create_user() {
-//make sure no existe ya
-  if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
+
+  //make sure no existe ya
+ 	if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
 
     //set up the new users stuff
     $userdata = array(
-      'user_login' => $_POST['qcu-email']
-    );
+ 			'user_login' => $_POST['qcu-email'],
+ 			'user_email' => $_POST['qcu-email'],
+ 			'first_name' => $_POST['qcu-first-name'],
+ 			'last_name' => $_POST['qcu-last-name']
+ 		);
 
-    //create the new user
-    $user_id = wp_insert_user( $userdata );
+ 		//create the new user
+ 		$user_id = wp_insert_user( $userdata );
 
     //flag for shibboleth
     $user = new WP_User($user_id);
