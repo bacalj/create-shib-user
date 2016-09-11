@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Quick Create User
-Description: Getting around requirement to not have @maildomain in username, for shib
+Description: Create a shib-compatible user ahead of time
 Author: Joe Bacal
 Version: 0.1
 */
@@ -9,12 +9,12 @@ Version: 0.1
 //add the menu page
 add_action('admin_menu', 'qcu_setup_menu');
 
-//add the setup to the menu page
+//add the form to the menu page
 function qcu_setup_menu(){
-  add_menu_page( 'Quick Create User Page', 'Quick Create User', 'manage_options', 'quick-create-user', 'qcu_setup' );
+  add_menu_page( 'Quick Create User Page', 'Quick Create User', 'manage_options', 'quick-create-user', 'qcu_form' );
 }
 
-function qcu_setup(){
+function qcu_form(){
   ?>
     <style>
       #qcu-form input {
@@ -28,7 +28,7 @@ function qcu_setup(){
       <h2>Quick Create User</h2>
       <h4>Use this form <span style="color:red;">only</span> when creating users who will use Shibboleth to log in</h4>
 
-      <form method="post" action="<?php echo admin_url() . '/admin-post.php'; ?>">
+      <form method="post" action="<?php echo admin_url() . 'admin-post.php'; ?>">
 
         <input type="hidden" name="action" value="qcu_handle">
 
@@ -48,11 +48,27 @@ function qcu_setup(){
 }
 
 
-add_action( 'admin_post_qcu_handle', 'qcu_create_user' );
-
 function qcu_create_user() {
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-    die();
+    // echo '<pre>';
+    // print_r($_POST);
+    // echo '</pre>';
+    // die();
+
+	//set up a config object for the new user to be
+ 	if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
+
+    $userdata = array(
+ 			'user_login' => $_POST['qcu-email'],
+ 			'user_email' => $_POST['qcu-email'],
+ 			'first_name' => $_POST['qcu-first-name'],
+ 			'last_name' => $_POST['qcu-last-name']
+ 		);
+
+ 		//create the new user and make them flagged for shib
+ 		$user_id = wp_insert_user( $userdata );
+    $user = new WP_User($user_id);
+    update_usermeta($user->ID, 'shibboleth_account', true);
+  }
+  
 }
+add_action( 'admin_post_qcu_handle', 'qcu_create_user' );
