@@ -93,6 +93,7 @@ function qcu_create_user() {
     }
 
     //TODO: add confirmation
+    echo 'user created';
   }
 
   else {
