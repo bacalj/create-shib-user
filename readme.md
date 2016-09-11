@@ -1,2 +1,2 @@
 #create-shib-user
-No frills, few thrills. Needs security. 
+*Doesn't work yet...*
