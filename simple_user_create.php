@@ -7,7 +7,9 @@ Version: 0.1
 */
 
 //add the menu page
-add_action('admin_menu', 'qcu_setup_menu');
+if (is_super_admin()){
+  add_action('admin_menu', 'qcu_setup_menu');
+}
 
 //add the form to the menu page
 function qcu_setup_menu(){
