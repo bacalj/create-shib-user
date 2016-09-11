@@ -83,7 +83,7 @@ function qcu_create_user() {
 
     if ( isset($_POST['qcu-setup-new-site']) ){
       //set up new site data
-      $path = '/' .  substr($email, 0, strpos($email, '@')) . '/';
+      $path = '/' .  substr($username, 0, strpos($username, '@')) . '/';
       $title = $first . ' ' . $last;
 
       //add the new site
