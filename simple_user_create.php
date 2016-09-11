@@ -49,14 +49,11 @@ function qcu_form(){
 
 
 function qcu_create_user() {
-    // echo '<pre>';
-    // print_r($_POST);
-    // echo '</pre>';
-    // die();
 
-	//set up a config object for the new user to be
+  //make sure no existe ya
  	if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
 
+    //set up the new users stuff
     $userdata = array(
  			'user_login' => $_POST['qcu-email'],
  			'user_email' => $_POST['qcu-email'],
@@ -64,11 +61,16 @@ function qcu_create_user() {
  			'last_name' => $_POST['qcu-last-name']
  		);
 
- 		//create the new user and make them flagged for shib
+ 		//create the new user
  		$user_id = wp_insert_user( $userdata );
+
+    //flag for shibboleth
     $user = new WP_User($user_id);
     update_usermeta($user->ID, 'shibboleth_account', true);
   }
   
+  //do it again if you like
+  wp_redirect( admin_url() . 'admin.php?page=quick-create-user' );
+  exit;
 }
 add_action( 'admin_post_qcu_handle', 'qcu_create_user' );
