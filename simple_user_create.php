@@ -7,13 +7,14 @@ Version: 0.1
 */
 
 //add the menu page
-// if (is_super_admin()){
-//   add_action('admin_menu', 'qcu_setup_menu');
-// }
+add_action('admin_menu', 'qcu_setup_menu');
+
 
 //add the form to the menu page
 function qcu_setup_menu(){
-  add_menu_page( 'Quick Create User Page', 'Quick Create User', 'manage_options', 'quick-create-user', 'qcu_form' );
+  if (is_super_admin()){
+    add_menu_page( 'Quick Create User Page', 'Quick Create User', 'manage_options', 'quick-create-user', 'qcu_form' );
+  }
 }
 
 function qcu_form(){
