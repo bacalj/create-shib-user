@@ -81,7 +81,7 @@ function qcu_create_user() {
     $user = new WP_User($user_id);
     update_usermeta($user->ID, 'shibboleth_account', true);
 
-    if ($_POST['qcu-setup-new-site'] == true ){
+    if ( isset($_POST['qcu-setup-new-site']) ){
       //set up new site data
       $path = '/' .  substr($email, 0, strpos($email, '@')) . '/';
       $title = $first . ' ' . $last;
