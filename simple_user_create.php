@@ -49,7 +49,6 @@ function qcu_create_user() {
     //set up the new users stuff
     $userdata = array(
       'user_login' => $_POST['qcu-email']
-      //'user_email' => $_POST['qcu-email'] because it gets overwritten anyway
     );
 
     //create the new user
