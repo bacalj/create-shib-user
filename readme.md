@@ -1,4 +1,11 @@
 #create-shib-user
-*Doesn't work yet...*
 
-*Kind of works...*
+Create a new Shibboleth-friendly user for your WordPress multisite.
+
+*Works, but...its still a work in progress*
+
+It needs:
+- Some security measures
+- Error handing and success confirmation
+- Cosmetics
+- Configurability
