@@ -91,15 +91,9 @@ function qcu_create_user() {
 
       //TODO: email them
     }
-
     //TODO: add confirmation
-    echo 'user created';
   }
-
-  else {
-    echo 'ya existe este user';
-    //TODO: handle errors
-  }
+  //TODO: handle errors
 
   //do it again if you like
   wp_redirect( admin_url() . 'admin.php?page=quick-create-user' );
