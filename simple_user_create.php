@@ -44,7 +44,7 @@ function qcu_form(){
         <input type="text" name="qcu-last-name" value=""><br><br>
 
         <label for="qcu-setup-new-site">Set up a new site for this user?</label><br>
-        <em>IMPORTANT - if you check this box the url for the new site will be the username - so don't do it if you want a different url.  This is really only meant for the Portfolios multisite.</em>
+        <em>IMPORTANT - if you check this box the url for the new site will be the username - so don't do it if you want a different url.<br>This feature is really only meant for the Portfolios multisite.</em>
         <input type="checkbox" name="qcu-setup-new-site" value=""><br><br>
 
         <label for="qcu-setup-domain">Domain for site:<br><em>If you are not at Smith College, you'll want to change this</em></label>
