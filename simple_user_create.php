@@ -68,14 +68,14 @@ function qcu_create_user() {
 
     //set up the new users stuff
     $userdata = array(
- 			'user_login'  => $username,
- 			'user_email'  => $username,
- 			'first_name'  => $first,
- 			'last_name'   => $last
- 		);
+      'user_login'  => $username,
+      'user_email'  => $username,
+      'first_name'  => $first,
+      'last_name'   => $last
+    );
 
- 		//create the new user and collect the ID
- 		$user_id = wp_insert_user( $userdata );
+    //create the new user and collect the ID
+    $user_id = wp_insert_user( $userdata );
 
     //flag for shibboleth
     $user = new WP_User($user_id);
