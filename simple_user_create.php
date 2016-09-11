@@ -59,7 +59,7 @@ function qcu_form(){
 function qcu_create_user() {
 
   //make sure no existe ya
- 	if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
+  if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
 
     $domain   = sanitize_text_field($_POST['qcu-setup-domain']);
     $username = sanitize_text_field($_POST['qcu-email']);
