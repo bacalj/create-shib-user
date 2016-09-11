@@ -43,18 +43,17 @@ function qcu_form(){
 
 
 function qcu_create_user() {
-
-  //make sure no existe ya
- 	if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
+//make sure no existe ya
+  if ((null == username_exists($_POST['qcu-email'])) && ( null == email_exists( $_POST['qcu-email']))) {
 
     //set up the new users stuff
     $userdata = array(
- 			'user_login' => $_POST['qcu-email']
- 			//'user_email' => $_POST['qcu-email'] because it gets overwritten anyway
- 		);
+      'user_login' => $_POST['qcu-email']
+      //'user_email' => $_POST['qcu-email'] because it gets overwritten anyway
+    );
 
- 		//create the new user
- 		$user_id = wp_insert_user( $userdata );
+    //create the new user
+    $user_id = wp_insert_user( $userdata );
 
     //flag for shibboleth
     $user = new WP_User($user_id);
