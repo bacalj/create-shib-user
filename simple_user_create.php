@@ -51,7 +51,7 @@ function qcu_form(){
         <input type="checkbox" name="qcu-setup-new-site" value=""><br><br>
 
         <label for="qcu-setup-domain">Domain for site:<br><em>If you are not at Smith College, you'll want to change this</em></label>
-        <input type="text" name="qcu-setup-domain" value="sophia.smith.edu"><br><br>
+        <input type="text" name="qcu-setup-domain" value="sophia.smith.edu/portfolios"><br><br>
 
         <input type="submit" name="submit" class="button button-primary" value="Create Shibboleth compatible user">
       </form>
