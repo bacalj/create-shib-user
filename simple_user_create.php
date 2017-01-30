@@ -1,4 +1,4 @@
-<?php
+g<?php
 /*
 Plugin Name: Quick Create User
 Description: Create a shib-compatible user ahead of time, and a portfolio for them if desired
@@ -92,6 +92,34 @@ function qcu_create_user() {
 
       //add the new site
       $new_site = wpmu_create_blog($domain, $path, $title, $user_id);
+
+      //set up some stuff on the new site
+      switch_to_blog($new_site);
+
+      //set up welcome page
+      $poststuff = array(
+        'post_title' => 'Welcome',
+        'post_content' => 'You can edit this page...',
+        'post_status' => 'publish',
+        'post_author' => $user_id,
+        'post_type' => 'page'
+      );
+      wp_insert_post($poststuff);
+
+      //set Welcome to front page
+      $welcome = get_page_by_title( 'Welcome' );
+      update_option( 'show_on_front', 'page' );
+      update_option( 'page_on_front', $welcome->ID );
+
+      //set up menu
+      $menu_id = wp_create_nav_menu('Main Menu');
+
+      wp_update_nav_menu_item($menu_id, 0, array(
+        'menu-item-title' =>  __('Welcome'),
+        'menu-item-classes' => 'welcome',
+        'menu-item-url' => home_url( '/' ),
+        'menu-item-status' => 'publish')
+      );
 
       //TODO: email them
     }
