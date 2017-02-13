@@ -1,4 +1,4 @@
-g<?php
+<?php
 /*
 Plugin Name: Quick Create User
 Description: Create a shib-compatible user ahead of time, and a portfolio for them if desired
